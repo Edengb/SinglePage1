@@ -1,0 +1,223 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="UTF-8" />
+	<title>SinglePage</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+	<link rel="stylesheet" href="./css/estilo.css" />
+	<!--<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">!-->
+	<meta name="viewport" content="width=device-width, initial-scale = 1.0, 
+maximum-scale=1.0, user-scalable=no" /> 
+	<script>
+		window.onload = function() {
+
+			function fecharMenus() {
+
+				var buttomMenu = document.getElementById("menu1");
+				var itensMenu1 = document.getElementById("itensMenu1");
+				var itensMenu2 = document.getElementById("itensMenu2");
+				buttomMenu.classList.remove('is-active');
+				itensMenu1.classList.remove('menuAtive');
+
+				itensMenu2.style.left = "100%";
+			}
+
+			var buttomMenu = document.getElementById("menu1");
+
+			var itensMenu1 = document.getElementById("itensMenu1");
+
+			console.log(buttomMenu);
+
+			buttomMenu.onclick = function() {
+				var attrClass = this.getAttribute("class");
+				if(!RegExp(/\bis-active\b/).test(attrClass)) {
+					this.classList.add('is-active');
+					itensMenu1.classList.add('menuAtive');
+
+
+				} else {
+					this.classList.remove('is-active');
+					itensMenu1.classList.remove('menuAtive');
+				}
+			}
+
+
+			itensMenu1.onclick = function() {
+				console.log(this);
+				buttomMenu.classList.remove('is-active');
+				this.classList.remove('menuAtive');
+			}
+
+
+			var buttomMenu2 = document.getElementById("menu2");
+
+			var itensMenu2 = document.getElementById("itensMenu2");
+			
+			var buttonFechar = document.getElementById("menu-fechar");
+
+
+			buttomMenu2.onclick = function() {
+				itensMenu2.style.left = "0%";
+			}
+
+			buttonFechar.onclick = function() {
+				itensMenu2.style.left = "100%";
+			}
+
+			itensMenu2.onclick = function() {
+				itensMenu2.style.left = "100%";			
+			}
+
+
+			var anchorlinks = document.querySelectorAll('a[href^="#"]')
+			 
+			for (let item of anchorlinks) { // relitere 
+			    item.addEventListener('click', (e)=> {
+			        let hashval = item.getAttribute('href')
+			        let target = document.querySelector(hashval)
+			        target.scrollIntoView({
+			            behavior: 'smooth',
+			            block: 'start'
+			        })
+			        history.pushState(null, null, hashval);
+			        e.preventDefault();
+			    })
+			}
+
+			window.onscroll = function() {
+				setTimeout(function(){ 
+					fecharMenus();
+				 }, 500);
+				
+			};
+
+		}
+	</script>
+</head>
+
+<body>
+	<div id="part1">
+		<header>	
+			<nav class="firstNav">
+				<div class="firstLayer">
+					<h1>
+						<img class="logo" src="img/logoHeader.png" alt="AfferoLab Logo" />
+					</h1>
+					<div class="buttomMenu"  id="menu1">
+						<span class="line"></span>
+						<span class="line"></span>
+						<span class="line"></span>
+					</div>
+					<div class="itensDesktop">
+						<ul>
+							<a  href="#part1"><li>Home</li></a>
+							<a  href="#part2"><li>Tema1</li></a>
+						</ul>
+					</div>
+					
+				</div>
+				
+
+				
+				<ul id="itensMenu1">
+					<a  href="#part1"><li>Home</li></a>
+					<a  href="#part2"><li>Tema1</li></a>
+				</ul>
+
+				
+			</nav>
+		</header>
+		<section>
+			<h1>
+				<img id="logoPart1"  src="img/AfferolabHeader.png" alt="Afferolab Logo" />
+			</h1>
+			<a href="#part2" id="Anchor1">
+				<div class="diamond-shape">
+					<div class="item-count">
+						<i class="fa fa-angle-down"></i>
+					</div>
+				</div>
+			</a>
+		</section>
+	</div>	
+
+	<div id="part2">
+		<header>
+			<nav>
+				<div id="secondLayer">
+					<h1>
+						<img id="logoTema1" src="img/logoTema1.png" alt="AfferoLab Logo" />
+					</h1>
+					<div id="menu2">
+						<span class="line"></span>
+						<span class="line"></span>
+						<span class="line"></span>
+					</div>
+					<div class="itensDesktop">
+						<ul>
+							<a  href="#part1"><li>Home</li></a>
+							<a  href="#part2"><li>Tema1</li></a>
+						</ul>
+					</div>
+				</div>
+				
+				<div id="itensMenu2">
+					
+						<img class="logoTema1Menu" src="img/logoTema1.png" alt="AfferoLab Logo" />
+					
+					<button id="menu-fechar">
+    					Fecha Menu
+					</button>
+					<ul>
+						<a  href="#part1"><li>Home</li></a>
+						<a  href="#part2"><li>Tema1</li></a>
+					</ul>
+				</div>
+				
+			</nav>
+		</header>
+		<section>
+				<article>
+					<h2>Tema1</h2>
+					<p>Lorem ipsum dolor sit amet, consectetur adipiscing.</p>
+					<p>Amet consectetur adipiscing elit pellentesque habitant. </p>
+					<p>Consequat ac felis donec et odio. Etiam erat</p>
+				</article>
+		</section>
+		<figure>
+			<div>
+			<figure>
+				<img src="img/studyIcon.png" alt="Icone1"/>
+				<figcaption>
+					<h3>Study</h3>
+					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+				</figcaption>
+			</figure>
+			<figure>
+				
+				<img src="img/editIcon.png" alt="Icone2"/>
+				<figcaption>
+					<h3>Work</h3>
+					<p>Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+				</figcaption>
+			</figure>
+			<figure>
+				<img src="img/melhoraIcon.png" alt="Icone3"/>
+				<figcaption>
+					<h3>Improve</h3>
+					<p>Pellentesque massa placerat duis ultricies lacus sed.</p>
+				</figcaption>
+			</figure>
+			</div>
+		</figure>
+	</div>
+	<footer>
+		<h2>&copy 2018 Affero Lab SimplePage by Elieden</h2>
+		<p>Sed do eiusmod tempor incididunt ut.</p>
+		<p>Pellentesque massa placerat.</p>
+		<a href="#part2"><div class="triangle-up"></div></a>
+	</footer>
+
+</body>
+
+</html>
